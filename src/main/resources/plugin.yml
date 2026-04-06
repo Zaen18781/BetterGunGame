@@ -1,0 +1,22 @@
+name: BetterGunGame
+version: '$version'
+main: dev.zaen.betterGunGame.BetterGunGame
+api-version: '1.21'
+author: Zaen
+load: POSTWORLD
+depend: [WorldGuard]
+softdepend: [PacketEvents, BetterCore]
+
+authors: [ZaenCotti]
+description: Competitive GunGame minigame with 50 levels and multi-map support
+
+commands:
+  bettergungame:
+    description: BetterGunGame main command
+    aliases: [bgg]
+    usage: /bgg <start|stop|join|setlobby|mapoverview|mapsetup|reload|rescanspawns>
+
+permissions:
+  bettergungame.admin:
+    description: Access to all BetterGunGame admin commands
+    default: op

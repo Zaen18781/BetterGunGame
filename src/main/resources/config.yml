@@ -1,0 +1,62 @@
+config-version: 2
+
+lobby-location: null
+
+game:
+  round-duration-seconds: 1200
+  max-levels: 50
+  respawn-protection-seconds: 5
+  min-players: 2
+  max-players-per-map: 16
+  countdown-seconds: 5
+
+sounds:
+  enabled: true
+  level-up: "entity.player.levelup"
+  kill: "entity.experience_orb.pickup"
+  respawn: "block.note_block.pling"
+  countdown-tick: "block.note_block.pling"
+  countdown-go: "entity.ender_dragon.growl"
+  game-end: "ui.toast.challenge_complete"
+  event-start: "block.note_block.chime"
+
+random-events:
+  enabled: false
+  interval-seconds: 60
+  duration-seconds: 15
+
+messages:
+  prefix: "<color:#08a8f8><b>ʙᴇᴛᴛᴇʀɢᴜɴɢᴀᴍᴇ</b></color> <dark_gray>»</dark_gray> "
+
+  # --- Error Messages ---
+  no-permission:        "<color:#ff0000><b>❌</b></color> <white>ᴋᴇɪɴᴇ ʙᴇʀᴇᴄʜᴛɪɢᴜɴɢ!</white>"
+  player-only:          "<color:#ff0000><b>❌</b></color> <white>ɴᴜʀ ғüʀ sᴘɪᴇʟᴇʀ!</white>"
+  game-already-running: "<color:#ff0000><b>❌</b></color> <white>ᴇɪɴ sᴘɪᴇʟ ʟäᴜғᴛ ʙᴇʀᴇɪᴛs!</white>"
+  game-not-running:     "<color:#ff0000><b>❌</b></color> <white>ᴋᴇɪɴ sᴘɪᴇʟ ʟäᴜғᴛ ɢᴇʀᴀᴅᴇ!</white>"
+  not-enough-players:   "<color:#ff0000><b>❌</b></color> <white>ɴɪᴄʜᴛ ɢᴇɴᴜɢ sᴘɪᴇʟᴇʀ! (ᴍɪɴ: <min>)</white>"
+  no-maps:              "<color:#ff0000><b>❌</b></color> <white>ᴋᴇɪɴᴇ ᴍᴀᴘs ɢᴇғᴜɴᴅᴇɴ!</white>"
+
+  # --- Success Messages ---
+  lobby-set:     "<color:#00EE39>✔</color> <white>ʟᴏʙʙʏ-sᴘᴀᴡɴ ɢᴇsᴇᴛᴢᴛ.</white>"
+  game-started:  "<color:#00EE39>✔</color> <white>sᴘɪᴇʟ ɢᴇsᴛᴀʀᴛᴇᴛ!</white>"
+  game-stopped:  "<color:#ff0000><b>❌</b></color> <white>sᴘɪᴇʟ ɢᴇsᴛᴏᴘᴘᴛ.</white>"
+  joined-game:   "<color:#00EE39>✔</color> <white>sᴘɪᴇʟᴇʀ <color:#08a8f8><name></color> ʜɪɴᴢᴜɢᴇғüɢᴛ.</white>"
+  player-added:  "<color:#00EE39>✔</color> <white><gray>ᴅᴜ ᴡᴜʀᴅᴇsᴛ ᴢᴜᴍ sᴘɪᴇʟ ʜɪɴᴢᴜɢᴇғüɢᴛ.</gray></white>"
+  reload:        "<color:#00EE39>✔</color> <white>ᴋᴏɴғɪɢ ɴᴇᴜ ɢᴇʟᴀᴅᴇɴ.</white>"
+
+  # --- Game Messages ---
+  level-up:                "<color:#2ecc71><b>⬆ ʟᴇᴠᴇʟ ᴜᴘ → <level>/<max></b></color>"
+  kill-message:            "<gray>ᴅᴜ ʜᴀsᴛ <color:#08a8f8><victim></color> ᴇʟɪᴍɪɴɪᴇʀᴛ.</gray>"
+  death-message:           "<gray>ᴅᴜ ᴡᴜʀᴅᴇsᴛ ᴠᴏɴ <color:#08a8f8><killer></color> ᴇʟɪᴍɪɴɪᴇʀᴛ.</gray>"
+  respawn-protected:       "<color:#08a8f8>● ʀᴇsᴘᴀᴡɴ-sᴄʜᴜᴛᴢ ᴀᴋᴛɪᴠ (<seconds>s)</color>"
+  respawn-protection-end:  "<gray>● sᴄʜᴜᴛᴢ ʙᴇᴇɴᴅᴇᴛ.</gray>"
+  countdown:               "<yellow><b><seconds></b></yellow>"
+  countdown-go:            "<color:#00EE39><b>ɢᴏ!</b></color>"
+  winner:                  "<gradient:#ffff00:#ff8800><b>🏆 <name> ɢᴇᴡɪɴɴᴛ!</b></gradient>"
+  tie:                     "<yellow><b>🏆 ᴜɴᴇɴᴛsᴄʜɪᴇᴅᴇɴ!</b></yellow>"
+  time-up:                 "<color:#ff0000><b>⌛ ᴢᴇɪᴛ ᴀʙɢᴇʟᴀᴜғᴇɴ!</b></color>"
+
+  # --- Event Messages ---
+  event-announce: "<gradient:#ff8800:#ffff00><b>⚡ ᴇᴠᴇɴᴛ: <event></b></gradient>"
+  event-end:      "<gray>● ᴇᴠᴇɴᴛ ʙᴇᴇɴᴅᴇᴛ.</gray>"
+  void-kill:      "<gray>ᴀssɪsᴛ: <color:#08a8f8><killer></color> → ʟᴇᴠᴇʟ ᴜᴘ ᴅᴜʀᴄʜ ᴠᴏɪᴅ-ᴋɪʟʟ.</gray>"

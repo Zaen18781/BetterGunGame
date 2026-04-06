@@ -1,0 +1,72 @@
+map-overview:
+  title: "<gradient:#e63278:#fd8ddb><b>Map-Übersicht</b></gradient>"
+  rows: 6
+  items:
+    filler:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+    previous:
+      material: ARROW
+      name: "<gray>« Zurück</gray>"
+      slot: 45
+    next:
+      material: ARROW
+      name: "<gray>Weiter »</gray>"
+      slot: 53
+    map-icon:
+      material: FILLED_MAP
+      name: "<gradient:#e63278:#fd8ddb><b><map_name></b></gradient>"
+      lore:
+        - "<dark_gray>Spawns: <gray><spawn_count></gray>"
+        - "<dark_gray>Welt: <gray><world_name></gray>"
+        - ""
+        - "<yellow>▶ Klicken zum Verwalten</yellow>"
+
+top-players:
+  title: "<gradient:#ffff00:#ff8800><b>Runden-Ergebnis</b></gradient>"
+  rows: 3
+  items:
+    filler:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+    first:
+      material: PLAYER_HEAD
+      slot: 11
+      name: "<gradient:#ffd700:#ff8c00><b>#1 — <name></b></gradient>"
+      lore:
+        - "<dark_gray>Level: <gray><level></gray>"
+        - "<dark_gray>Kills: <gray><kills></gray>"
+    second:
+      material: PLAYER_HEAD
+      slot: 13
+      name: "<gradient:#c0c0c0:#9e9e9e><b>#2 — <name></b></gradient>"
+      lore:
+        - "<dark_gray>Level: <gray><level></gray>"
+        - "<dark_gray>Kills: <gray><kills></gray>"
+    third:
+      material: PLAYER_HEAD
+      slot: 15
+      name: "<gradient:#cd7f32:#a0522d><b>#3 — <name></b></gradient>"
+      lore:
+        - "<dark_gray>Level: <gray><level></gray>"
+        - "<dark_gray>Kills: <gray><kills></gray>"
+
+game-management:
+  title: "<gradient:#e63278:#fd8ddb><b>GunGame-Verwaltung</b></gradient>"
+  rows: 3
+  items:
+    filler:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+    start:
+      material: LIME_WOOL
+      slot: 11
+      name: "<green><b» Spiel starten</b></green>"
+    stop:
+      material: RED_WOOL
+      slot: 13
+      name: "<red><b>■ Spiel stoppen</b></red>"
+    reload:
+      material: COMPASS
+      slot: 15
+      name: "<yellow><b>↺ Konfig neu laden</b></yellow>"

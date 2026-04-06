@@ -1,0 +1,242 @@
+levels:
+  1:
+    material: NETHERITE_SWORD
+    name: "<gradient:#ff4500:#ff0000><b>Netherit-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+      fire_aspect: 2
+  2:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+      fire_aspect: 1
+  3:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+  4:
+    material: DIAMOND_AXE
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
+    enchantments:
+      sharpness: 5
+  5:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 4
+  6:
+    material: DIAMOND_AXE
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
+    enchantments:
+      sharpness: 4
+  7:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 3
+  8:
+    material: DIAMOND_AXE
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
+    enchantments:
+      sharpness: 3
+  9:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 2
+  10:
+    material: DIAMOND_AXE
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
+    enchantments:
+      sharpness: 2
+  11:
+    material: IRON_SWORD
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+  12:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 1
+  13:
+    material: IRON_AXE
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Axt</b></gradient>"
+    enchantments:
+      sharpness: 5
+  14:
+    material: IRON_SWORD
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 4
+  15:
+    material: GOLDEN_SWORD
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+      fire_aspect: 1
+  16:
+    material: IRON_SWORD
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 3
+  17:
+    material: IRON_AXE
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Axt</b></gradient>"
+    enchantments:
+      sharpness: 3
+  18:
+    material: IRON_SWORD
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 2
+  19:
+    material: GOLDEN_SWORD
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 4
+  20:
+    material: IRON_SWORD
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 1
+  21:
+    material: STONE_SWORD
+    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+  22:
+    material: IRON_AXE
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Axt</b></gradient>"
+    enchantments:
+      sharpness: 1
+  23:
+    material: STONE_SWORD
+    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 4
+  24:
+    material: GOLDEN_SWORD
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 3
+  25:
+    material: STONE_AXE
+    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    enchantments:
+      sharpness: 4
+  26:
+    material: STONE_SWORD
+    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 3
+  27:
+    material: GOLDEN_SWORD
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 2
+  28:
+    material: STONE_AXE
+    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    enchantments:
+      sharpness: 3
+  29:
+    material: STONE_SWORD
+    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 2
+  30:
+    material: GOLDEN_SWORD
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 1
+  31:
+    material: STONE_AXE
+    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    enchantments:
+      sharpness: 2
+  32:
+    material: STONE_SWORD
+    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 1
+  33:
+    material: WOODEN_SWORD
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 5
+  34:
+    material: STONE_AXE
+    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    enchantments:
+      sharpness: 1
+  35:
+    material: GOLDEN_AXE
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Axt</b></gradient>"
+    enchantments:
+      sharpness: 3
+  36:
+    material: WOODEN_SWORD
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 4
+  37:
+    material: WOODEN_AXE
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
+    enchantments:
+      sharpness: 4
+  38:
+    material: WOODEN_SWORD
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 3
+  39:
+    material: WOODEN_AXE
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
+    enchantments:
+      sharpness: 3
+  40:
+    material: WOODEN_SWORD
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 2
+  41:
+    material: WOODEN_AXE
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
+    enchantments:
+      sharpness: 2
+  42:
+    material: WOODEN_SWORD
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    enchantments:
+      sharpness: 1
+  43:
+    material: WOODEN_AXE
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
+    enchantments:
+      sharpness: 1
+  44:
+    material: WOODEN_SWORD
+    name: "<gray><b>Holz-Schwert</b></gray>"
+  45:
+    material: WOODEN_AXE
+    name: "<gray><b>Holz-Axt</b></gray>"
+  46:
+    material: WOODEN_SHOVEL
+    name: "<gray><b>Holz-Schaufel</b></gray>"
+    enchantments:
+      sharpness: 1
+  47:
+    material: WOODEN_PICKAXE
+    name: "<gray><b>Holz-Spitzhacke</b></gray>"
+  48:
+    material: WOODEN_SHOVEL
+    name: "<dark_gray><b>Holz-Schaufel</b></dark_gray>"
+  49:
+    material: WOODEN_HOE
+    name: "<dark_gray><b>Holz-Hacke</b></dark_gray>"
+  50:
+    material: STICK
+    name: "<red><b>Stock</b></red>"
