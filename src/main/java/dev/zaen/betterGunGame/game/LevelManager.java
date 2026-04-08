@@ -90,8 +90,11 @@ public class LevelManager {
     /** Returns the weapon item for the given level (1-based). Returns stick if not found. */
     public ItemStack getItemForLevel(int level) {
         ItemStack item = levelItems.get(level);
-        if (item == null) return new ItemStack(Material.STICK);
-        return item.clone();
+        ItemStack result = item != null ? item.clone() : new ItemStack(Material.STICK);
+        ItemMeta meta = result.getItemMeta();
+        meta.setUnbreakable(true);
+        result.setItemMeta(meta);
+        return result;
     }
 
     public int getMaxLevel() {

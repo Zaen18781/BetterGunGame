@@ -1,7 +1,6 @@
 package dev.zaen.betterGunGame.command;
 
 import dev.zaen.betterGunGame.BetterGunGame;
-import dev.zaen.betterGunGame.game.GameState;
 import dev.zaen.betterGunGame.gui.GameManagementGui;
 import dev.zaen.betterGunGame.gui.MapOverviewGui;
 import dev.zaen.betterGunGame.map.GameMap;
@@ -44,18 +43,6 @@ public class GunGameCommand implements CommandExecutor, TabCompleter {
             case "stop" -> {
                 if (!hasPermission(sender)) return true;
                 plugin.getGameManager().stopGame(sender);
-            }
-
-            case "join" -> {
-                if (!(sender instanceof Player player)) {
-                    sender.sendMessage(plugin.getConfigManager().getMessage("player-only"));
-                    return true;
-                }
-                if (plugin.getGameManager().getState() == GameState.INGAME) {
-                    TextUtil.send(player, plugin.getConfigManager().getMessage("game-already-running"));
-                    return true;
-                }
-                plugin.getGameManager().addPlayer(player);
             }
 
             case "setlobby" -> {
@@ -225,9 +212,8 @@ public class GunGameCommand implements CommandExecutor, TabCompleter {
     private void sendHelp(CommandSender sender) {
         String prefix = plugin.getConfigManager().getPrefix();
         List<String> lines = List.of(
-                "<gray>/bgg <white>start</white> — Spiel starten",
+                "<gray>/bgg <white>start</white> — Spiel starten (alle Online-Spieler werden automatisch hinzugefügt)",
                 "<gray>/bgg <white>stop</white> — Spiel stoppen",
-                "<gray>/bgg <white>join</white> — Spiel beitreten",
                 "<gray>/bgg <white>setlobby</white> — Lobby setzen",
                 "<gray>/bgg <white>mapoverview</white> — Map-Übersicht",
                 "<gray>/bgg <white>mapselect <name></white> — Zur Map teleportieren",
@@ -248,7 +234,7 @@ public class GunGameCommand implements CommandExecutor, TabCompleter {
         if (!sender.hasPermission("bettergungame.admin")) return List.of();
 
         if (args.length == 1) {
-            return Arrays.asList("start", "stop", "join", "setlobby",
+            return Arrays.asList("start", "stop", "setlobby",
                     "mapoverview", "mapselect", "mapsetup", "manage", "reload", "rescanspawns");
         }
 

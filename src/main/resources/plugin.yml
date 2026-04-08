@@ -14,7 +14,7 @@ commands:
   bettergungame:
     description: BetterGunGame main command
     aliases: [bgg]
-    usage: /bgg <start|stop|join|setlobby|mapoverview|mapsetup|reload|rescanspawns>
+    usage: /bgg <start|stop|setlobby|mapoverview|mapsetup|reload|rescanspawns>
 
 permissions:
   bettergungame.admin:

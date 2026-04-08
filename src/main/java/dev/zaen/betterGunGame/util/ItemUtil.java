@@ -82,6 +82,11 @@ public final class ItemUtil {
             return this;
         }
 
+        public Builder unbreakable() {
+            meta.setUnbreakable(true);
+            return this;
+        }
+
         public Builder amount(int amount) {
             item.setAmount(amount);
             return this;

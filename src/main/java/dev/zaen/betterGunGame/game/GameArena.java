@@ -100,6 +100,7 @@ public class GameArena {
                         "",
                         "<dark_aqua>⬡ ᴢᴇɪɢᴛ ᴅᴇɴ ɴäᴄʜsᴛᴇɴ ɢᴇɢɴᴇʀ</dark_aqua>",
                         "")
+                .unbreakable()
                 .build();
         player.getInventory().setItem(8, compass);
         // Don't call updateCompass here — player hasn't been teleported to the map world yet.
