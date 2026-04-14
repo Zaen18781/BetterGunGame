@@ -5,183 +5,247 @@ levels:
     enchantments:
       sharpness: 5
       fire_aspect: 2
+      knockback: 2
   2:
+    material: NETHERITE_AXE
+    name: "<gradient:#ff4500:#ff0000><b>Netherit-Axt</b></gradient>"
+    enchantments:
+      sharpness: 5
+      efficiency: 5
+  3:
+    material: MACE
+    name: "<gradient:#c0c0c0:#ffd700><b>Keule</b></gradient>"
+    enchantments:
+      density: 5
+      breach: 4
+    extra-items:
+      WIND_CHARGE: 8
+  4:
     material: DIAMOND_SWORD
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert + Schild</b></gradient>"
     enchantments:
       sharpness: 5
       fire_aspect: 1
-  3:
-    material: DIAMOND_SWORD
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 5
-  4:
-    material: DIAMOND_AXE
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
-    enchantments:
-      sharpness: 5
+    offhand: SHIELD
   5:
-    material: DIAMOND_SWORD
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 4
-  6:
     material: DIAMOND_AXE
     name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
     enchantments:
-      sharpness: 4
+      sharpness: 5
+  6:
+    material: CROSSBOW
+    name: "<gradient:#ff8c00:#ffd700><b>Armbrust — Vergifteter Pfeil</b></gradient>"
+    enchantments:
+      multishot: 1
+      quick_charge: 3
+    extra-items:
+      TIPPED_ARROW: 32
+    tipped-arrow-effect: instant_damage
+    tipped-arrow-amplifier: 1
   7:
     material: DIAMOND_SWORD
     name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
     enchantments:
-      sharpness: 3
+      sharpness: 4
+      knockback: 1
   8:
-    material: DIAMOND_AXE
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
+    material: TRIDENT
+    name: "<gradient:#00bfff:#1e90ff><b>Dreizack</b></gradient>"
+    enchantments:
+      loyalty: 3
+      sharpness: 5
+  9:
+    material: BOW
+    name: "<gradient:#a0522d:#8b4513><b>Bogen — Infinity</b></gradient>"
+    enchantments:
+      power: 5
+      infinity: 1
+      punch: 2
+    extra-items:
+      ARROW: 1
+  10:
+    material: DIAMOND_SWORD
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert + Schild</b></gradient>"
     enchantments:
       sharpness: 3
-  9:
-    material: DIAMOND_SWORD
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 2
-  10:
-    material: DIAMOND_AXE
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
-    enchantments:
-      sharpness: 2
+    offhand: SHIELD
   11:
     material: IRON_SWORD
     name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
     enchantments:
       sharpness: 5
+      fire_aspect: 1
+    extra-items:
+      GOLDEN_APPLE: 2
   12:
-    material: DIAMOND_SWORD
-    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Schwert</b></gradient>"
+    material: DIAMOND_AXE
+    name: "<gradient:#00e5ff:#00bcd4><b>Diamant-Axt</b></gradient>"
     enchantments:
-      sharpness: 1
+      sharpness: 3
   13:
-    material: IRON_AXE
-    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Axt</b></gradient>"
+    material: CROSSBOW
+    name: "<gradient:#ff8c00:#ffd700><b>Armbrust — Piercing</b></gradient>"
     enchantments:
-      sharpness: 5
+      quick_charge: 2
+      piercing: 4
+    extra-items:
+      TIPPED_ARROW: 16
+    tipped-arrow-effect: instant_damage
+    tipped-arrow-amplifier: 1
   14:
     material: IRON_SWORD
-    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert + Schild</b></gradient>"
     enchantments:
-      sharpness: 4
+      sharpness: 5
+    offhand: SHIELD
   15:
     material: GOLDEN_SWORD
     name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
     enchantments:
       sharpness: 5
-      fire_aspect: 1
+      fire_aspect: 2
   16:
+    material: BOW
+    name: "<gradient:#a0522d:#8b4513><b>Bogen — Flammen</b></gradient>"
+    enchantments:
+      power: 4
+      punch: 2
+      flame: 1
+    extra-items:
+      ARROW: 16
+  17:
     material: IRON_SWORD
     name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
     enchantments:
-      sharpness: 3
-  17:
+      sharpness: 4
+      knockback: 2
+  18:
     material: IRON_AXE
     name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Axt</b></gradient>"
     enchantments:
-      sharpness: 3
-  18:
-    material: IRON_SWORD
-    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 2
-  19:
-    material: GOLDEN_SWORD
-    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
-    enchantments:
       sharpness: 4
+  19:
+    material: TRIDENT
+    name: "<gradient:#00bfff:#1e90ff><b>Dreizack</b></gradient>"
+    enchantments:
+      loyalty: 2
+      sharpness: 3
   20:
     material: IRON_SWORD
-    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert</b></gradient>"
+    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Schwert + Schild</b></gradient>"
     enchantments:
-      sharpness: 1
+      sharpness: 3
+    offhand: SHIELD
   21:
     material: STONE_SWORD
     name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
     enchantments:
       sharpness: 5
+      fire_aspect: 1
   22:
-    material: IRON_AXE
-    name: "<gradient:#c0c0c0:#9e9e9e><b>Eisen-Axt</b></gradient>"
+    material: MACE
+    name: "<gradient:#c0c0c0:#ffd700><b>Keule</b></gradient>"
     enchantments:
-      sharpness: 1
+      density: 3
+      breach: 2
+    extra-items:
+      WIND_CHARGE: 4
   23:
-    material: STONE_SWORD
-    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 4
-  24:
-    material: GOLDEN_SWORD
-    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 3
-  25:
     material: STONE_AXE
     name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
     enchantments:
       sharpness: 4
-  26:
-    material: STONE_SWORD
-    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+  24:
+    material: GOLDEN_SWORD
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert + Schild</b></gradient>"
     enchantments:
       sharpness: 3
+      fire_aspect: 1
+    offhand: SHIELD
+  25:
+    material: BOW
+    name: "<gradient:#a0522d:#8b4513><b>Bogen</b></gradient>"
+    enchantments:
+      power: 3
+      punch: 1
+    extra-items:
+      ARROW: 12
+  26:
+    material: STONE_SWORD
+    name: "<gradient:#757575:#616161><b>Stein-Schwert + Feuerball</b></gradient>"
+    enchantments:
+      sharpness: 3
+      knockback: 2
+    extra-items:
+      FIRE_CHARGE: 6
   27:
     material: GOLDEN_SWORD
     name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
     enchantments:
       sharpness: 2
+      fire_aspect: 1
   28:
     material: STONE_AXE
-    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    name: "<gradient:#757575:#616161><b>Stein-Axt + Schild</b></gradient>"
     enchantments:
       sharpness: 3
+    offhand: SHIELD
   29:
-    material: STONE_SWORD
-    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    material: TRIDENT
+    name: "<gradient:#00bfff:#1e90ff><b>Dreizack</b></gradient>"
     enchantments:
-      sharpness: 2
+      loyalty: 1
+      sharpness: 1
   30:
-    material: GOLDEN_SWORD
-    name: "<gradient:#ffd700:#ff8c00><b>Gold-Schwert</b></gradient>"
-    enchantments:
-      sharpness: 1
-  31:
-    material: STONE_AXE
-    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    material: GOLDEN_AXE
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Axt</b></gradient>"
     enchantments:
       sharpness: 2
-  32:
+      fire_aspect: 1
+  31:
     material: STONE_SWORD
-    name: "<gradient:#757575:#616161><b>Stein-Schwert</b></gradient>"
+    name: "<gradient:#757575:#616161><b>Stein-Schwert + Schild</b></gradient>"
     enchantments:
-      sharpness: 1
+      sharpness: 2
+    offhand: SHIELD
+    extra-items:
+      GOLDEN_APPLE: 1
+  32:
+    material: CROSSBOW
+    name: "<gradient:#ff8c00:#ffd700><b>Armbrust</b></gradient>"
+    enchantments:
+      quick_charge: 1
+    extra-items:
+      TIPPED_ARROW: 8
+    tipped-arrow-effect: instant_damage
+    tipped-arrow-amplifier: 0
   33:
     material: WOODEN_SWORD
     name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
     enchantments:
       sharpness: 5
+      fire_aspect: 1
   34:
-    material: STONE_AXE
-    name: "<gradient:#757575:#616161><b>Stein-Axt</b></gradient>"
+    material: BOW
+    name: "<gradient:#a0522d:#8b4513><b>Bogen</b></gradient>"
     enchantments:
-      sharpness: 1
+      power: 2
+    extra-items:
+      ARROW: 8
   35:
     material: GOLDEN_AXE
-    name: "<gradient:#ffd700:#ff8c00><b>Gold-Axt</b></gradient>"
+    name: "<gradient:#ffd700:#ff8c00><b>Gold-Axt + Schild</b></gradient>"
     enchantments:
-      sharpness: 3
+      sharpness: 1
+    offhand: SHIELD
   36:
     material: WOODEN_SWORD
-    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert + Enderperlen</b></gradient>"
     enchantments:
       sharpness: 4
+      knockback: 2
+    extra-items:
+      ENDER_PEARL: 4
   37:
     material: WOODEN_AXE
     name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
@@ -189,54 +253,66 @@ levels:
       sharpness: 4
   38:
     material: WOODEN_SWORD
-    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert + Schild</b></gradient>"
     enchantments:
       sharpness: 3
+    offhand: SHIELD
   39:
     material: WOODEN_AXE
     name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
     enchantments:
       sharpness: 3
   40:
-    material: WOODEN_SWORD
-    name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
+    material: BOW
+    name: "<gradient:#a0522d:#8b4513><b>Bogen</b></gradient>"
     enchantments:
-      sharpness: 2
+      power: 1
+    extra-items:
+      ARROW: 4
   41:
-    material: WOODEN_AXE
-    name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
-    enchantments:
-      sharpness: 2
-  42:
     material: WOODEN_SWORD
     name: "<gradient:#8b4513:#a0522d><b>Holz-Schwert</b></gradient>"
     enchantments:
-      sharpness: 1
-  43:
+      sharpness: 2
+      knockback: 2
+  42:
     material: WOODEN_AXE
-    name: "<gradient:#8b4513:#a0522d><b>Holz-Axt</b></gradient>"
+    name: "<gray><b>Holz-Axt + Schild</b></gray>"
     enchantments:
-      sharpness: 1
-  44:
+      sharpness: 2
+    offhand: SHIELD
+  43:
     material: WOODEN_SWORD
     name: "<gray><b>Holz-Schwert</b></gray>"
-  45:
-    material: WOODEN_AXE
-    name: "<gray><b>Holz-Axt</b></gray>"
-  46:
-    material: WOODEN_SHOVEL
-    name: "<gray><b>Holz-Schaufel</b></gray>"
     enchantments:
       sharpness: 1
+      knockback: 2
+  44:
+    material: WOODEN_AXE
+    name: "<gray><b>Holz-Axt</b></gray>"
+    enchantments:
+      sharpness: 1
+  45:
+    material: WOODEN_SWORD
+    name: "<dark_gray><b>Holz-Schwert</b></dark_gray>"
+    enchantments:
+      knockback: 2
+  46:
+    material: WOODEN_AXE
+    name: "<dark_gray><b>Holz-Axt</b></dark_gray>"
+    enchantments:
+      knockback: 2
   47:
-    material: WOODEN_PICKAXE
-    name: "<gray><b>Holz-Spitzhacke</b></gray>"
+    material: WOODEN_SWORD
+    name: "<dark_gray><b>Holz-Schwert</b></dark_gray>"
   48:
+    material: WOODEN_AXE
+    name: "<dark_gray><b>Holz-Axt</b></dark_gray>"
+  49:
     material: WOODEN_SHOVEL
     name: "<dark_gray><b>Holz-Schaufel</b></dark_gray>"
-  49:
-    material: WOODEN_HOE
-    name: "<dark_gray><b>Holz-Hacke</b></dark_gray>"
   50:
     material: STICK
     name: "<red><b>Stock</b></red>"
+    enchantments:
+      knockback: 2

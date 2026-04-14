@@ -38,7 +38,7 @@ public class GlowingUtil {
             // Only save if they actually have a color — ConcurrentHashMap disallows null values
             GlowingService.GlowColor current = service.getColor(player);
             if (current != null) savedColors.put(player.getUniqueId(), current);
-            service.setGlow(player, GlowingService.GlowColor.BLUE);
+            service.setGlow(player, GlowingService.GlowColor.GREEN);
         } else {
             player.setGlowing(true);
         }

@@ -9,12 +9,14 @@ import dev.zaen.betterGunGame.game.GameState;
 import dev.zaen.betterGunGame.gui.PlayerOverviewGui;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Trident;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -126,6 +128,22 @@ public class GameListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         // Player leaving mid-game — just remove them from the arena's player list
         // (They'll simply be absent when online player list is fetched)
+    }
+
+    /**
+     * Tracks thrown tridents so they can be reliably removed even if they land in unloaded chunks.
+     * Without tracking, a Loyalty trident in an unloaded chunk is missed by getEntitiesByClass(),
+     * causing it to orbit the player indefinitely when that chunk later loads.
+     */
+    @EventHandler
+    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+        if (!(event.getEntity() instanceof Trident trident)) return;
+        if (!(trident.getShooter() instanceof Player player)) return;
+
+        GameArena arena = plugin.getGameManager().getArenaManager().getArenaForPlayer(player.getUniqueId());
+        if (arena == null) return;
+
+        arena.trackTrident(player, trident);
     }
 
 }

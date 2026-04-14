@@ -1,7 +1,7 @@
 package dev.zaen.betterGunGame.gui;
 
 import dev.triumphteam.gui.builder.item.ItemBuilder;
-import dev.triumphteam.gui.guis.Gui;
+import dev.triumphteam.gui.guis.PaginatedGui;
 import dev.zaen.betterGunGame.BetterGunGame;
 import dev.zaen.betterGunGame.game.GameArena;
 import dev.zaen.betterGunGame.game.GamePlayer;
@@ -32,41 +32,58 @@ public class PlayerOverviewGui {
         int maxLevel = plugin.getLevelManager().getMaxLevel();
         boolean canTeleport = viewer.isOp() || viewer.hasPermission("bgg.admin");
 
-        Gui gui = Gui.gui()
+        PaginatedGui gui = dev.triumphteam.gui.guis.Gui.paginated()
                 .title(TextUtil.parse("<gradient:#e63278:#fd8ddb><b>ᴘʟᴀʏᴇʀ ᴏᴠᴇʀᴠɪᴇᴡ</b></gradient>"))
                 .rows(6)
+                .pageSize(45)
                 .disableAllInteractions()
                 .create();
 
-        // Bottom row glass (slots 45-53)
+        applyNavigation(gui, viewer);
+
+        for (int i = 0; i < sorted.size(); i++) {
+            GamePlayer gp = sorted.get(i);
+            int rank = i + 1;
+            gui.addItem(ItemBuilder.from(buildHead(gp, rank, maxLevel, canTeleport))
+                    .asGuiItem(e -> {
+                        if (!canTeleport) return;
+                        Player target = Bukkit.getPlayer(gp.getUuid());
+                        if (target == null || !target.isOnline()) return;
+                        viewer.closeInventory();
+                        viewer.teleportAsync(target.getLocation());
+                    }));
+        }
+
+        gui.open(viewer);
+    }
+
+    private void applyNavigation(PaginatedGui gui, Player viewer) {
         for (int slot = 45; slot <= 53; slot++) {
             gui.setItem(slot, ItemBuilder.from(
                     ItemUtil.filler(Material.GRAY_STAINED_GLASS_PANE)).asGuiItem());
         }
 
-        // Close — slot 49, uses ❌ like the config
-        gui.setItem(49, ItemBuilder.from(
+        gui.setItem(48, MapOverviewGui.buildNavItem(gui, true)
+                .asGuiItem(e -> { gui.previous(); refreshNav(gui, viewer); }));
+        gui.setItem(49, MapOverviewGui.buildPageInfo(gui));
+        gui.setItem(50, MapOverviewGui.buildNavItem(gui, false)
+                .asGuiItem(e -> { gui.next(); refreshNav(gui, viewer); }));
+
+        // Close button
+        gui.setItem(53, ItemBuilder.from(
                 ItemUtil.builder(Material.BARRIER)
                         .name("<color:#ff0000><b>❌ ꜱᴄʜʟɪᴇꜱꜱᴇɴ</b></color>")
                         .hideAll()
-                        .build()
-        ).asGuiItem(e -> gui.close(viewer)));
+                        .build())
+                .asGuiItem(e -> viewer.closeInventory()));
+    }
 
-        // Player heads — slots 0–44 (rows 1-5, all columns, no border)
-        for (int i = 0; i < Math.min(sorted.size(), 45); i++) {
-            GamePlayer gp = sorted.get(i);
-            int rank = i + 1;
-            ItemStack head = buildHead(gp, rank, maxLevel, canTeleport);
-            gui.setItem(i, ItemBuilder.from(head).asGuiItem(e -> {
-                if (!canTeleport) return;
-                Player target = Bukkit.getPlayer(gp.getUuid());
-                if (target == null || !target.isOnline()) return;
-                gui.close(viewer);
-                viewer.teleportAsync(target.getLocation());
-            }));
-        }
-
-        gui.open(viewer);
+    private void refreshNav(PaginatedGui gui, Player viewer) {
+        gui.updateItem(48, MapOverviewGui.buildNavItem(gui, true)
+                .asGuiItem(e -> { gui.previous(); refreshNav(gui, viewer); }));
+        gui.updateItem(49, MapOverviewGui.buildPageInfo(gui));
+        gui.updateItem(50, MapOverviewGui.buildNavItem(gui, false)
+                .asGuiItem(e -> { gui.next(); refreshNav(gui, viewer); }));
     }
 
     private ItemStack buildHead(GamePlayer gp, int rank, int maxLevel, boolean canTeleport) {
@@ -75,7 +92,6 @@ public class PlayerOverviewGui {
         SkullMeta meta = (SkullMeta) skull.getItemMeta();
         meta.setOwningPlayer(op);
 
-        // Rank color: gold / silver / bronze / default blue
         String rankColor = switch (rank) {
             case 1 -> "<gradient:#ffd700:#ff8c00>";
             case 2 -> "<gradient:#c0c0c0:#9e9e9e>";

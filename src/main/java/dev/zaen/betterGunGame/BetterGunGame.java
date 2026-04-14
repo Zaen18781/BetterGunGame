@@ -5,6 +5,7 @@ import dev.zaen.betterGunGame.config.ConfigManager;
 import dev.zaen.betterGunGame.game.GameManager;
 import dev.zaen.betterGunGame.game.LevelManager;
 import dev.zaen.betterGunGame.listener.GameListener;
+import dev.zaen.betterGunGame.listener.ItemEditorListener;
 import dev.zaen.betterGunGame.listener.ProtectionListener;
 import dev.zaen.betterGunGame.map.MapManager;
 import dev.zaen.betterGunGame.worldguard.RegionUtils;
@@ -46,6 +47,7 @@ public final class BetterGunGame extends JavaPlugin {
         // 6. Listeners
         getServer().getPluginManager().registerEvents(new GameListener(this), this);
         getServer().getPluginManager().registerEvents(new ProtectionListener(this), this);
+        getServer().getPluginManager().registerEvents(new ItemEditorListener(this), this);
 
         // 7. Commands
         GunGameCommand cmd = new GunGameCommand(this);
@@ -70,4 +72,7 @@ public final class BetterGunGame extends JavaPlugin {
     public MapManager getMapManager() { return mapManager; }
     public LevelManager getLevelManager() { return levelManager; }
     public GameManager getGameManager() { return gameManager; }
+
+    /** Returns the plugin's own JAR file — used by MapManager to extract bundled maps. */
+    public java.io.File getPluginFile() { return getFile(); }
 }

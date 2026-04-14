@@ -4,10 +4,10 @@ import dev.zaen.betterGunGame.BetterGunGame;
 import dev.zaen.betterGunGame.game.GameArena;
 import dev.zaen.betterGunGame.util.SoundUtil;
 import dev.zaen.betterGunGame.util.TextUtil;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.List;
 import java.util.Random;
@@ -20,6 +20,10 @@ public class RandomEventManager {
 
     private RandomEvent currentEvent = null;
     private int eventTaskId = -1;
+
+    /** Hotbar countdown state */
+    private BukkitTask countdownTask = null;
+    private int eventSecondsRemaining = 0;
 
     public RandomEventManager(BetterGunGame plugin, GameArena arena) {
         this.plugin = plugin;
@@ -53,6 +57,10 @@ public class RandomEventManager {
 
         for (Player player : arena.getOnlinePlayers()) {
             TextUtil.send(player, plugin.getConfigManager().getPrefix() + msg);
+            TextUtil.sendTitle(player,
+                    "<gradient:#ff8800:#ffff00><b>" + currentEvent.getDisplayName() + "</b></gradient>",
+                    "<gray>" + currentEvent.getDescription() + "</gray>",
+                    5, 40, 10);
             if (plugin.getConfigManager().areSoundsEnabled()) {
                 SoundUtil.play(player, plugin.getConfigManager().getSoundEventStart());
             }
@@ -60,8 +68,52 @@ public class RandomEventManager {
 
         applyEvent(currentEvent);
 
-        int durationTicks = plugin.getConfigManager().getEventDurationSeconds() * 20;
-        plugin.getServer().getScheduler().runTaskLater(plugin, this::endCurrentEvent, durationTicks);
+        int durationSeconds = plugin.getConfigManager().getEventDurationSeconds();
+        eventSecondsRemaining = durationSeconds;
+
+        // Schedule end
+        plugin.getServer().getScheduler().runTaskLater(plugin, this::endCurrentEvent,
+                (long) durationSeconds * 20);
+
+        // Start hotbar countdown (fires every second, starts immediately)
+        startCountdown();
+    }
+
+    private void startCountdown() {
+        if (countdownTask != null) {
+            countdownTask.cancel();
+            countdownTask = null;
+        }
+
+        countdownTask = plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
+            if (currentEvent == null || eventSecondsRemaining <= 0) {
+                stopCountdown(true);
+                return;
+            }
+            String bar = "<gradient:#ff8800:#ffff00>⚡ "
+                    + currentEvent.getDisplayName()
+                    + "</gradient> <dark_gray>—</dark_gray> <yellow><b>"
+                    + eventSecondsRemaining
+                    + "s</b></yellow>";
+            for (Player p : arena.getOnlinePlayers()) {
+                TextUtil.sendActionBar(p, bar);
+            }
+            eventSecondsRemaining--;
+        }, 0L, 20L);
+    }
+
+    private void stopCountdown(boolean clearBar) {
+        if (countdownTask != null) {
+            countdownTask.cancel();
+            countdownTask = null;
+        }
+        eventSecondsRemaining = 0;
+        if (clearBar) {
+            // Clear the action bar for all players
+            for (Player p : arena.getOnlinePlayers()) {
+                TextUtil.sendActionBar(p, "");
+            }
+        }
     }
 
     private void applyEvent(RandomEvent event) {
@@ -69,10 +121,13 @@ public class RandomEventManager {
         int durationTicks = plugin.getConfigManager().getEventDurationSeconds() * 20;
 
         switch (event) {
-            case SPEED_BOOST -> applyEffect(players, PotionEffectType.SPEED, durationTicks, 1);
-            case LOW_GRAVITY -> applyEffect(players, PotionEffectType.SLOW_FALLING, durationTicks, 0);
-            case BLINDNESS -> applyEffect(players, PotionEffectType.BLINDNESS, durationTicks, 0);
+            case SPEED_BOOST  -> applyEffect(players, PotionEffectType.SPEED, durationTicks, 1);
+            case LOW_GRAVITY  -> applyEffect(players, PotionEffectType.SLOW_FALLING, durationTicks, 0);
+            case BLINDNESS    -> applyEffect(players, PotionEffectType.BLINDNESS, durationTicks, 0);
             case INVISIBILITY -> applyEffect(players, PotionEffectType.INVISIBILITY, durationTicks, 0);
+            case STRENGTH     -> applyEffect(players, PotionEffectType.STRENGTH, durationTicks, 1);
+            case JUMP_BOOST   -> applyEffect(players, PotionEffectType.JUMP_BOOST, durationTicks, 3);
+            case SLOWNESS     -> applyEffect(players, PotionEffectType.SLOWNESS, durationTicks, 2);
             case DOUBLE_KILLS, ONE_SHOT -> { /* Handled in kill logic via getCurrentEvent() */ }
         }
     }
@@ -85,14 +140,19 @@ public class RandomEventManager {
 
     private void endCurrentEvent() {
         if (currentEvent == null) return;
+        stopCountdown(true);
+
         List<Player> players = arena.getOnlinePlayers();
 
         // Remove effects we applied
         switch (currentEvent) {
-            case SPEED_BOOST -> players.forEach(p -> p.removePotionEffect(PotionEffectType.SPEED));
-            case LOW_GRAVITY -> players.forEach(p -> p.removePotionEffect(PotionEffectType.SLOW_FALLING));
-            case BLINDNESS -> players.forEach(p -> p.removePotionEffect(PotionEffectType.BLINDNESS));
+            case SPEED_BOOST  -> players.forEach(p -> p.removePotionEffect(PotionEffectType.SPEED));
+            case LOW_GRAVITY  -> players.forEach(p -> p.removePotionEffect(PotionEffectType.SLOW_FALLING));
+            case BLINDNESS    -> players.forEach(p -> p.removePotionEffect(PotionEffectType.BLINDNESS));
             case INVISIBILITY -> players.forEach(p -> p.removePotionEffect(PotionEffectType.INVISIBILITY));
+            case STRENGTH     -> players.forEach(p -> p.removePotionEffect(PotionEffectType.STRENGTH));
+            case JUMP_BOOST   -> players.forEach(p -> p.removePotionEffect(PotionEffectType.JUMP_BOOST));
+            case SLOWNESS     -> players.forEach(p -> p.removePotionEffect(PotionEffectType.SLOWNESS));
             default -> {}
         }
 
@@ -104,15 +164,19 @@ public class RandomEventManager {
         currentEvent = null;
     }
 
-    /** Apply event to a newly respawned player. */
+    /** Apply the current event's effect to a newly respawned player, with remaining duration. */
     public void applyCurrentEventToPlayer(Player player) {
         if (currentEvent == null) return;
-        int durationTicks = plugin.getConfigManager().getEventDurationSeconds() * 20;
+        // Use remaining seconds so the effect matches what's left of the event
+        int remainingTicks = Math.max(1, eventSecondsRemaining * 20);
         switch (currentEvent) {
-            case SPEED_BOOST -> player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, durationTicks, 1, true, false));
-            case LOW_GRAVITY -> player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, durationTicks, 0, true, false));
-            case BLINDNESS -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, durationTicks, 0, true, false));
-            case INVISIBILITY -> player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, durationTicks, 0, true, false));
+            case SPEED_BOOST  -> player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,       remainingTicks, 1, true, false));
+            case LOW_GRAVITY  -> player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, remainingTicks, 0, true, false));
+            case BLINDNESS    -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,    remainingTicks, 0, true, false));
+            case INVISIBILITY -> player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, remainingTicks, 0, true, false));
+            case STRENGTH     -> player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH,     remainingTicks, 1, true, false));
+            case JUMP_BOOST   -> player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST,   remainingTicks, 3, true, false));
+            case SLOWNESS     -> player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,     remainingTicks, 2, true, false));
             default -> {}
         }
     }

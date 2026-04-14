@@ -1,7 +1,10 @@
 package dev.zaen.betterGunGame.game;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitTask;
 
+import java.util.Map;
 import java.util.UUID;
 
 public class GamePlayer {
@@ -15,6 +18,10 @@ public class GamePlayer {
 
     // Respawn protection state
     private boolean protected_ = false;
+    private BukkitTask protectionTask = null;
+
+    /** Saved hotbar layout: material → slot (0-7). Null = use default positions. */
+    private Map<Material, Integer> layoutSlots = null;
 
     public GamePlayer(Player player) {
         this.uuid = player.getUniqueId();
@@ -36,4 +43,11 @@ public class GamePlayer {
 
     public boolean isProtected() { return protected_; }
     public void setProtected(boolean value) { this.protected_ = value; }
+
+    public BukkitTask getProtectionTask() { return protectionTask; }
+    public void setProtectionTask(BukkitTask task) { this.protectionTask = task; }
+
+    public Map<Material, Integer> getLayoutSlots() { return layoutSlots; }
+    public void setLayoutSlots(Map<Material, Integer> slots) { this.layoutSlots = slots; }
+    public void clearLayoutSlots() { this.layoutSlots = null; }
 }

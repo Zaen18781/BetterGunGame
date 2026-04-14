@@ -2,6 +2,7 @@ package dev.zaen.betterGunGame.listener;
 
 import dev.zaen.betterGunGame.BetterGunGame;
 import dev.zaen.betterGunGame.game.GameState;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -10,8 +11,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.inventory.Inventory;
 
 public class ProtectionListener implements Listener {
 
@@ -46,8 +49,22 @@ public class ProtectionListener implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player player)) return;
         if (!isInGame(player)) return;
-        // Allow viewing but not moving items
-        event.setCancelled(true);
+
+        // Only manage the player's own inventory view — other GUIs (triumph-gui, ItemEditorGui) handle themselves
+        InventoryType viewType = event.getView().getType();
+        if (viewType != InventoryType.CRAFTING && viewType != InventoryType.PLAYER) return;
+
+        // Block any interaction with the compass slot (hotbar slot 8)
+        Inventory clickedInv = event.getClickedInventory();
+        if (clickedInv != null && clickedInv.equals(player.getInventory()) && event.getSlot() == 8) {
+            event.setCancelled(true);
+            return;
+        }
+
+        // Block if the cursor is carrying the compass (prevent placing it elsewhere)
+        if (event.getCursor() != null && event.getCursor().getType() == Material.RECOVERY_COMPASS) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler

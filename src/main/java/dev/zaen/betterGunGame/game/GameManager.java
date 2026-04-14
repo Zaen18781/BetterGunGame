@@ -2,6 +2,7 @@ package dev.zaen.betterGunGame.game;
 
 import dev.zaen.betterGunGame.BetterGunGame;
 import dev.zaen.betterGunGame.arena.ArenaManager;
+import dev.zaen.betterGunGame.map.GameMap;
 import dev.zaen.betterGunGame.util.SoundUtil;
 import dev.zaen.betterGunGame.util.TextUtil;
 import org.bukkit.entity.Player;
@@ -16,6 +17,8 @@ public class GameManager {
 
     private GameState state = GameState.IDLE;
     private int countdownTaskId = -1;
+    /** Set when /bgg start <map> or startgui is used; null = random selection. */
+    private List<GameMap> pendingMapOrder = null;
 
     public GameManager(BetterGunGame plugin) {
         this.plugin = plugin;
@@ -23,6 +26,11 @@ public class GameManager {
     }
 
     public boolean startGame(org.bukkit.command.CommandSender sender) {
+        return startGame(sender, null);
+    }
+
+    /** Starts the game. If forcedMaps is non-null, those maps (in order) override random selection. */
+    public boolean startGame(org.bukkit.command.CommandSender sender, List<GameMap> forcedMaps) {
         if (state != GameState.IDLE) {
             if (sender instanceof Player p)
                 TextUtil.send(p, plugin.getConfigManager().getMessage("game-already-running"));
@@ -37,6 +45,7 @@ public class GameManager {
             return false;
         }
 
+        pendingMapOrder = forcedMaps;
         state = GameState.STARTING;
         startCountdown();
         return true;
@@ -69,7 +78,14 @@ public class GameManager {
         // All online players at launch time — includes anyone who joined during countdown
         List<Player> players = new ArrayList<>(plugin.getServer().getOnlinePlayers());
 
-        arenaManager.createArenas(players).forEach(GameArena::start);
+        List<GameArena> arenas;
+        if (pendingMapOrder != null) {
+            arenas = arenaManager.createArenas(players, pendingMapOrder);
+            pendingMapOrder = null;
+        } else {
+            arenas = arenaManager.createArenas(players);
+        }
+        arenas.forEach(GameArena::start);
 
         String goMsg = plugin.getConfigManager().getRawMessage("countdown-go");
         broadcastTitle(goMsg, "", 5, 30, 10);

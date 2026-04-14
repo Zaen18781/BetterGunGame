@@ -3,6 +3,7 @@ package dev.zaen.betterGunGame.command;
 import dev.zaen.betterGunGame.BetterGunGame;
 import dev.zaen.betterGunGame.gui.GameManagementGui;
 import dev.zaen.betterGunGame.gui.MapOverviewGui;
+import dev.zaen.betterGunGame.gui.MapStartOrderGui;
 import dev.zaen.betterGunGame.map.GameMap;
 import dev.zaen.betterGunGame.map.MapManager;
 import dev.zaen.betterGunGame.util.TextUtil;
@@ -37,7 +38,43 @@ public class GunGameCommand implements CommandExecutor, TabCompleter {
 
             case "start" -> {
                 if (!hasPermission(sender)) return true;
-                plugin.getGameManager().startGame(sender);
+                if (args.length >= 2) {
+                    // /bgg start <mapname> — force that specific map
+                    String mapName = args[1];
+                    GameMap map = plugin.getMapManager().getMap(mapName);
+                    if (map == null) {
+                        String msg = plugin.getConfigManager().getPrefix()
+                                + "<red>Map nicht gefunden: <white>" + mapName + "</white></red>";
+                        if (sender instanceof Player p) TextUtil.send(p, msg);
+                        else sender.sendMessage(msg);
+                        return true;
+                    }
+                    plugin.getGameManager().startGame(sender, List.of(map));
+                } else {
+                    plugin.getGameManager().startGame(sender);
+                }
+            }
+
+            case "itemgui" -> {
+                if (!hasPermission(sender)) return true;
+                if (!(sender instanceof Player player)) {
+                    sender.sendMessage(plugin.getConfigManager().getMessage("player-only"));
+                    return true;
+                }
+                new dev.zaen.betterGunGame.gui.ItemOverviewGui(plugin).open(player);
+            }
+
+            case "startgui" -> {
+                if (!hasPermission(sender)) return true;
+                if (!(sender instanceof Player player)) {
+                    sender.sendMessage(plugin.getConfigManager().getMessage("player-only"));
+                    return true;
+                }
+                if (plugin.getMapManager().getMaps().isEmpty()) {
+                    TextUtil.send(player, plugin.getConfigManager().getMessage("no-maps"));
+                    return true;
+                }
+                new MapStartOrderGui(plugin).open(player);
             }
 
             case "stop" -> {
@@ -212,7 +249,8 @@ public class GunGameCommand implements CommandExecutor, TabCompleter {
     private void sendHelp(CommandSender sender) {
         String prefix = plugin.getConfigManager().getPrefix();
         List<String> lines = List.of(
-                "<gray>/bgg <white>start</white> — Spiel starten (alle Online-Spieler werden automatisch hinzugefügt)",
+                "<gray>/bgg <white>start [map]</white> — Spiel starten (optional: spezifische Map erzwingen)",
+                "<gray>/bgg <white>startgui</white> — Map-Reihenfolge per GUI festlegen & Spiel starten",
                 "<gray>/bgg <white>stop</white> — Spiel stoppen",
                 "<gray>/bgg <white>setlobby</white> — Lobby setzen",
                 "<gray>/bgg <white>mapoverview</white> — Map-Übersicht",
@@ -234,13 +272,13 @@ public class GunGameCommand implements CommandExecutor, TabCompleter {
         if (!sender.hasPermission("bettergungame.admin")) return List.of();
 
         if (args.length == 1) {
-            return Arrays.asList("start", "stop", "setlobby",
+            return Arrays.asList("start", "startgui", "itemgui", "stop", "setlobby",
                     "mapoverview", "mapselect", "mapsetup", "manage", "reload", "rescanspawns");
         }
 
         if (args.length == 2) {
             return switch (args[0].toLowerCase()) {
-                case "mapselect" -> plugin.getMapManager().getMaps().stream()
+                case "start", "mapselect" -> plugin.getMapManager().getMaps().stream()
                         .map(GameMap::getName).collect(Collectors.toList());
                 case "mapsetup" -> List.of("setspawn");
                 default -> List.of();

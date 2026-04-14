@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Manages multiple active arenas and player-to-arena lookups.
@@ -29,7 +30,17 @@ public class ArenaManager {
      * Creates arenas: randomly selects the right number of maps, then distributes players.
      */
     public List<GameArena> createArenas(List<Player> players) {
-        List<GameMap> maps = plugin.getMapManager().selectMapsForGame(players.size());
+        return createArenas(players, plugin.getMapManager().selectMapsForGame(players.size()));
+    }
+
+    /**
+     * Creates arenas using a specific ordered map list (first N maps are picked based on player count).
+     */
+    public List<GameArena> createArenas(List<Player> players, List<GameMap> orderedMaps) {
+        int mapsNeeded = (int) Math.ceil(players.size() / 16.0);
+        mapsNeeded = Math.max(1, Math.min(mapsNeeded, Math.min(4, orderedMaps.size())));
+        List<GameMap> maps = orderedMaps.stream().limit(mapsNeeded).collect(Collectors.toList());
+
         Map<GameMap, List<Player>> distribution = distributor.distribute(players, maps);
 
         arenas.clear();

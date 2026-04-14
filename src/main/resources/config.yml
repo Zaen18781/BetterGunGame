@@ -5,7 +5,7 @@ lobby-location: null
 game:
   round-duration-seconds: 1200
   max-levels: 50
-  respawn-protection-seconds: 5
+  respawn-protection-seconds: 1
   min-players: 2
   max-players-per-map: 16
   countdown-seconds: 5
@@ -21,7 +21,7 @@ sounds:
   event-start: "block.note_block.chime"
 
 random-events:
-  enabled: false
+  enabled: true
   interval-seconds: 60
   duration-seconds: 15
 
@@ -60,3 +60,9 @@ messages:
   event-announce: "<gradient:#ff8800:#ffff00><b>⚡ ᴇᴠᴇɴᴛ: <event></b></gradient>"
   event-end:      "<gray>● ᴇᴠᴇɴᴛ ʙᴇᴇɴᴅᴇᴛ.</gray>"
   void-kill:      "<gray>ᴀssɪsᴛ: <color:#08a8f8><killer></color> → ʟᴇᴠᴇʟ ᴜᴘ ᴅᴜʀᴄʜ ᴠᴏɪᴅ-ᴋɪʟʟ.</gray>"
+
+  # --- Top 3 Broadcast (server-wide after each map ends) ---
+  top3-header:  "<gradient:#ffd700:#ff8800><b>━━━ 🏆 ᴛᴏᴘ 3 — <map> ━━━</b></gradient>"
+  top3-entry-1: "<gold><b>🥇 #1</b></gold> <white><b><name></b></white> <dark_gray>•</dark_gray> <yellow>ʟᴠʟ <level></yellow> <dark_gray>•</dark_gray> <white><kills> ᴋɪʟʟs</white>"
+  top3-entry-2: "<gray><b>🥈 #2</b></gray> <white><b><name></b></white> <dark_gray>•</dark_gray> <yellow>ʟᴠʟ <level></yellow> <dark_gray>•</dark_gray> <white><kills> ᴋɪʟʟs</white>"
+  top3-entry-3: "<dark_gray><b>🥉 #3</b></dark_gray> <white><b><name></b></white> <dark_gray>•</dark_gray> <yellow>ʟᴠʟ <level></yellow> <dark_gray>•</dark_gray> <white><kills> ᴋɪʟʟs</white>"
